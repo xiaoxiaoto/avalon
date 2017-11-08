@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>avalon练习</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript" src="dist/avalon.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</head>
+<body ms-controller="box" >
+    <div class="item" >
+        <h5>属性及内容显示</h5>
+        <p ms-attr="{title:@name,class:'font-10 text-red'}">{{@name}}</p>
+        <p ms-attr="[{title:@name},@flag?{class:'font-10 text-red'}:{class:'font-10'}]">{{@name}}</p>
+        <button ms-click="@clickHandle">切换</button>
+    </div>
+    <div class="item">
+        <h5>数据循环显示</h5>
+        <ul>
+            <li ms-for="($index,el) in names">{{@el}}</li>
+        </ul>
+        <ul>
+            <li ms-for="($index,el) in peoples">{{@el.name}}---{{@el.job}}</li>
+        </ul>
+        <table border="1">
+            <tr ms-for="($row, el) in @array">
+                <td ms-for="($col, ele) in @el">{{ele}}：（{{$row}}，{{$col}}）</td>
+            </tr>
+        </table>
+    </div>
+    <div class="item">
+        <h5>数据双向绑定</h5>
+        <input type="text" ms-duplex="@name"> <p ms-attr="{title:@name,class:'font-10 text-red'}">{{@name}}</p><br/>
+        <select ms-duplex="@name"  >
+             <option ms-for="($index,el) in @peoples" ms-attr="{value:@el.name}">{{@el.name}}</option>
+        </select>
+        <br/><br/>
+        <label ms-for="el in @peoples"><input type="checkbox" ms-attr="{value:@el.name}" ms-duplex="@names"/>{{@el.name}} </label>
+        <br/><br/>
+        <label ms-for="el in @peoples"><input type="radio" ms-attr="{value:@el.name}" ms-duplex="@name"/>{{@el.name}} </label>
+    </div>
+    <div class="item">
+        <h5>条件判断</h5>
+        <h5 ms-visible="@flag">toggle</h5>
+        <p ms-if="@flag">toggle</p>
+        <button ms-click="@clickHandle">切换</button>
+    </div>
+    <div class="item">
+        <h5>事件绑定</h5>
+        <button ms-click="@clickHandle">点击事件</button>
+        <button ms-mouseenter="@clickHandle">鼠标移入</button>
+        <button ms-mouseleave="@clickHandle">鼠标移出</button>
+    </div>
+</body>
+</html>
