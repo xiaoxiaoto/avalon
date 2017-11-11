@@ -25,7 +25,8 @@
         </ul>
         <table border="1">
             <tr ms-for="($row, el) in @array">
-                <td ms-for="($col, ele) in @el">{{ele}}：（{{$row}}，{{$col}}）</td>
+			    <td ms-for="($col, ele) in @el" ms-if="@ele==1"></td>
+                <td ms-for="($col, ele) in @el" ms-if="@ele!=1">{{ele}}：（{{$row}}，{{$col}}）</td>
             </tr>
         </table>
     </div>
